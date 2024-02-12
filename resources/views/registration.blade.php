@@ -4,35 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Login</title>
+    <title>Registration</title>
 </head>
-<body>  
-    <h2>Login</h2>
-    <div id="error-container"></div> <!-- Container to display errors -->
-    <form id="login-form" method="POST" action="{{ route('login') }}">
+<body>
+   <h2>Registration Form</h2> 
+   <form id="registration-form" method="POST" action="{{ route('register') }}">
         @csrf <!-- CSRF token field -->
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <button type="button" onclick="login()">Login</button> <!-- Call login() function on button click -->
-        <button type="button" onclick="register()">Sign in</button>
-    </form>
 
-    <script>
-        function login() {
+       <label for="name">Name:</label><br>
+       <input type="text" id="name" name="name" required><br><br>
+
+       <label for="email">Email:</label><br>
+       <input type="email" id="email" name="email" required><br><br>
+
+       <label for="password">Password:</label><br>
+       <input type="password" id="password" name="password" required><br><br>
+
+       <button type="button" onclick="register()">Register</button>
+
+       <button type="button" onclick="login()">Log in</button>
+   </form>
+
+   <div id="error-container"></div>
+
+   <script>
+       function register() {
             // Get form data
-            var formData = $('#login-form').serialize();
+            var formData = $('#registration-form').serialize();
             
             // Send AJAX request
             $.ajax({
                 type: 'POST',
-                url: '/login',
+                url: '/register',
                 data: formData,
                 success: function(response) {
                     // Handle success response
                     console.log(response);
-                    window.location.href = '/dashboard';
+                    alert("Successfully registered");
+                    window.location.href = '/';
                 },
                 error: function(xhr) {
                     // Handle error response
@@ -47,9 +56,9 @@
             });
         }
 
-        function register() {
-            window.location.href = '/register';
+        function login() {
+            window.location.href = '/';
         }
-    </script>
+   </script>
 </body>
 </html>
