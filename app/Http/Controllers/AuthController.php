@@ -17,18 +17,26 @@ class AuthController extends Controller{
 
     public function login()
     {
-        validator(request()->all(), [
+        $credentials = request()->only(['email', 'password']);
+
+        validator($credentials, [
             'email' => ['required', 'email'],
             'password' => ['required']
         ])->validate();
 
-        if (Auth::attempt(request()->only(['email', 'password']))) {
+        if (Auth::attempt($credentials)) {
             $user = Auth::user();
- 
             return $user;
         }
 
-        return redirect()->back()->withErrors(['email'=>'Invalid credentials']);
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (!$user) {
+            return response()->json(['errors' => ['Invalid email.']], 422);
+        }
+    
+        // Inform about password mismatch
+        return response()->json(['errors' => ['Incorrect password.']], 422);
     }
 
     public function logout(){

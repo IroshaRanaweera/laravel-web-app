@@ -44,13 +44,18 @@
                 },
                 error: function(xhr) {
                     // Handle error response
-                    var errors = xhr.responseJSON.errors;
-                    var errorHtml = '<ul>';
-                    $.each(errors, function(key, value) {
-                        errorHtml += '<li>' + value + '</li>';
-                    });
-                    errorHtml += '</ul>';
-                    $('#error-container').html(errorHtml);
+                    if (xhr.responseJSON && xhr.responseJSON.errors) {
+                        var errors = xhr.responseJSON.errors;
+                        var errorHtml = '<ul>';
+                        $.each(errors, function(key, value) {
+                            errorHtml += '<li>' + value + '</li>';
+                        });
+                        errorHtml += '</ul>';
+                        $('#error-container').html(errorHtml);
+                    } else {
+                        // Handle other errors, such as server-side errors
+                        alert("Failed to login! Try again.");
+                    }
                 }
             });
         }
