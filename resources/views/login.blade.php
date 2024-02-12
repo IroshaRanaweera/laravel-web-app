@@ -31,8 +31,16 @@
                 data: formData,
                 success: function(response) {
                     // Handle success response
-                    console.log(response);
-                    window.location.href = '/dashboard';
+                    if (response.role) {
+                    // Redirect user based on role
+                        if (response.role === 'admin' || response.role === 'superadmin') {
+                            window.location.href = '/dashboard';
+                        } else {
+                            window.location.href = '/welcome';
+                        }
+                    } else {
+                        alert("Failed to login! Try again.");
+                    }
                 },
                 error: function(xhr) {
                     // Handle error response

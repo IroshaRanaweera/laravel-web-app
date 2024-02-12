@@ -4,7 +4,15 @@ use Illuminate\Routing\PendingResourceRegistration;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/dashboard', 'App\Http\Controllers\DashboardController')->middleware('auth');
+Route::middleware(['auth','user-role:admin,superadmin'])->group(function(){
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController')->name('dashboard');
+});
+
+
+Route::middleware(['auth','user-role:guest'])->group(function(){
+    Route::get('/welcome', 'App\Http\Controllers\WelcomeController')->name('welcome');
+});
+
 
 Route::get('/logout','App\Http\Controllers\AuthController@logout' );
 

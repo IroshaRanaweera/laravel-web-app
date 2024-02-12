@@ -23,7 +23,7 @@
 </head>
 <body>
    <div class="container">
-       <h1>Welcome {{$user->name}} to Dashboard</h1>
+       <h1>Welcome {{$user->name}}</h1>
        <button class="logout-btn" onclick="logout()">Logout</button>
    </div>
 

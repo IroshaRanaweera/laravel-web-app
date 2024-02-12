@@ -14,6 +14,16 @@
        <label for="name">Name:</label><br>
        <input type="text" id="name" name="name" required><br><br>
 
+       <label for="username">Username:</label><br>
+       <input type="text" id="username" name="username" required><br><br>
+
+       <label for="role">Role:</label><br>
+        <select id="role" name="role">
+            <option value="admin">Admin</option>
+            <option value="superadmin">Superadmin</option>
+            <option value="guest">Guest</option>
+        </select><br><br>
+
        <label for="email">Email:</label><br>
        <input type="email" id="email" name="email" required><br><br>
 
@@ -39,7 +49,6 @@
                 data: formData,
                 success: function(response) {
                     // Handle success response
-                    console.log(response);
                     alert("Successfully registered");
                     window.location.href = '/';
                 },
