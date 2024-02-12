@@ -26,5 +26,7 @@ Route::get('/register','App\Http\Controllers\AuthController@showRegisterPage' );
 
 Route::post('/register','App\Http\Controllers\AuthController@register')->name('register');
 
+Route::get('/users','App\Http\Controllers\UserController@index' );
+
 
 

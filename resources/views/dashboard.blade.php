@@ -27,6 +27,9 @@
        <button class="logout-btn" onclick="logout()">Logout</button>
    </div>
 
+   <!-- Include the users.blade.php file -->
+   @include('users')
+
    <script>
        function logout() {
         // Send AJAX request
