@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         // Generate sample user data
         for ($i = 0; $i < $count; $i++) {
             $name = $this->generateRandomName($names);
-            $firstName = explode(' ', $name)[0]; // Extract the first name from the generated full name
+            $firstName = explode(' ', $name)[0]; 
             $username = $firstName . rand(0, 9999); 
             
 
@@ -51,9 +51,7 @@ class DatabaseSeeder extends Seeder
             try {
                 DB::table('users')->insert($user);
             } catch (UniqueConstraintViolationException $e) {
-                // Handle the unique constraint violation
-                // You can log the error or take appropriate action
-                // For now, we'll just continue to the next iteration
+                
                 continue;
             }
 

@@ -40,7 +40,7 @@
             box-sizing: border-box;
         }
         input[readonly] {
-            background-color: #f2f2f2; /* Apply a different background color for readonly inputs */
+            background-color: #f2f2f2; 
         }
         button {
             width: 100%;
@@ -120,7 +120,7 @@
                 url: '/user/' + id,
                 type: 'PUT',
                 headers: {
-                    'X-CSRF-TOKEN': csrfToken // Include CSRF token in the headers
+                    'X-CSRF-TOKEN': csrfToken 
                 },
                 data: {
                     name: name,

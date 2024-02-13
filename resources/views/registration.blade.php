@@ -97,7 +97,6 @@
 
            <button type="button" onclick="register()">Register</button><br>
 
-           <!-- Replaced the button with clickable text -->
            <a href="#" onclick="login()">Already have an account? Log in</a>
        </form>
 

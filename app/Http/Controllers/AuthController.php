@@ -29,12 +29,12 @@ class AuthController extends Controller{
     $user = User::where('email', $credentials['email'])->first();
 
     if (!$user) {
-        return response()->json(['errors' => ['Invalid email.']], 422);
+        return response()->json(['errors' => ['Invalid email.']], 422); // 422 - Unprocessable Content
     }
 
     // Check if the user is deactivated
     if ($user->deactivate) {
-        return response()->json(['errors' => ['Your account is deactivated.']], 422);
+        return response()->json(['errors' => ['Your account is deactivated.']], 422); // 422 - Unprocessable Content
     }
 
     // Attempt to authenticate the user
@@ -45,7 +45,7 @@ class AuthController extends Controller{
     }
 
     // Inform about password mismatch
-    return response()->json(['errors' => ['Incorrect password.']], 422);
+    return response()->json(['errors' => ['Incorrect password.']], 422); // 422 - Unprocessable Content
 }
 
     public function logout()

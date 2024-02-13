@@ -18,7 +18,6 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string', 'in:admin,superadmin,guest'],
-            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         // Create a new user instance
@@ -26,7 +25,7 @@ class UserController extends Controller
         $user->name = $validatedData['name'];
         $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
-        $user->password = Hash::make($validatedData['password']); // Hash the password before storing
+        $user->password = Hash::make($validatedData['password']); 
         $user->role = $validatedData['role'];
 
         // Save the user to the database
@@ -93,14 +92,14 @@ class UserController extends Controller
         // Update only the editable fields
         $user->name = $validatedData['name'];
         if (isset($validatedData['password'])) {
-            $user->password = Hash::make($validatedData['password']); // Hash the password if provided
+            $user->password = Hash::make($validatedData['password']); 
         }
         $user->role = $validatedData['role'];
 
         // Save the updated user information
         $user->save();
 
-        // Redirect back
+       
         return $user;
     }
 
