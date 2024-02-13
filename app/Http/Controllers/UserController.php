@@ -51,7 +51,7 @@ class UserController extends Controller
         }
 
         // Paginate the results
-        $perPage = $request->input('per_page', 1);
+        $perPage = $request->input('per_page', 20);
         $currentPage = $request->input('page', 1); // Get current page from the request
         $users = $users->paginate($perPage);
 
