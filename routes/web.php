@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth','user-role:admin,superadmin'])->group(function(){
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController')->name('dashboard');
+
+    Route::get('/user','App\Http\Controllers\UserController@index' );
     
     Route::get('/user/{id}','App\Http\Controllers\UserController@show')->name('update');
     Route::put('/user/{id}','App\Http\Controllers\UserController@update');
@@ -31,7 +33,7 @@ Route::get('/register','App\Http\Controllers\UserController@showRegisterPage' );
 
 Route::post('/register','App\Http\Controllers\UserController@register')->name('register');
 
-Route::get('/user','App\Http\Controllers\UserController@index' );
+
 
 
 
