@@ -18,7 +18,7 @@ sudo apt-get install apache2
 3. **Set Environment Variables for MySQL:** 
 
 Create a .env file similler to .env.example file 
-Change following vvariables according to your env
+Change following variables according to your env
 
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
