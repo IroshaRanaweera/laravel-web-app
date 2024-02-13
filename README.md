@@ -1,21 +1,21 @@
-# Project Name - Laravel Web App
+# Laravel Web App
 
 ## Description
 Laravel web application 
 
 ## Initial Setup
-1. **Install MySQL:** Instructions for installing MySQL.
+1. **Install MySQL:** 
 
 ```bash
 sudo apt-get update
 sudo apt-get install mysql-server
 ```
-2. **Install Apache Server:** Instructions for installing Apache server.
+2. **Install Apache Server:** 
 
 ```bash
 sudo apt-get install apache2
 ```
-3. **Set Environment Variables for MySQL:** Instructions for setting environment variables.
+3. **Set Environment Variables for MySQL:** 
 
 Create a .env file similler to .env.example file 
 Change following vvariables according to your env
@@ -27,13 +27,13 @@ Change following vvariables according to your env
     DB_USERNAME=root
     DB_PASSWORD=root
 
-4. **Start MySQL Server:** Command to start MySQL server.
+4. **Start MySQL Server:** 
 
 ```bash
 sudo systemctl start mysql
 ```
 ## Creating Database
-5. **Run Migrations and Seed Data:** Instructions for running migrations and seeding data.
+5. **Run Migrations and Seed Data:** 
 
 ```bash
 cd /path/to/your/laravel/project
@@ -46,7 +46,7 @@ or only migrations
 ```bash
 php artisan migrate
 ```
-6. **Start Apache Server:** Command to start Apache server.
+6. **Start Apache Server:** 
 
 ```bash
 sudo systemctl start apache2
