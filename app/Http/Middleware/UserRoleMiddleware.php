@@ -17,9 +17,10 @@ class UserRoleMiddleware
     public function handle(Request $request, Closure $next,  ...$roles): Response
     {
         if (Auth::check() && in_array(Auth::user()->role, $roles))
-         {
+        {
             return $next($request);
         }
-        return response()->json(["message" => "You don't have permission to access this page"]);
+        return redirect('/welcome');
+    
     }
 }
