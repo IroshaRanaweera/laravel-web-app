@@ -104,5 +104,17 @@ class UserController extends Controller
         return $user;
     }
 
+    public function status($id){
+
+        $user = User::findOrFail($id);
+
+        // Toggle the activation status
+        $user->deactivate = !$user->deactivate;
+        $user->save();
+
+        return $user;
+        
+    }
+
 
 }

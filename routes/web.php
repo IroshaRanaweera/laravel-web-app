@@ -9,6 +9,8 @@ Route::middleware(['auth','user-role:admin,superadmin'])->group(function(){
     
     Route::get('/user/{id}','App\Http\Controllers\UserController@show')->name('update');
     Route::put('/user/{id}','App\Http\Controllers\UserController@update');
+    
+    Route::put('/user/status/{id}','App\Http\Controllers\UserController@status');
 });
 
 

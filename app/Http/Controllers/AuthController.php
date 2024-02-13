@@ -17,28 +17,36 @@ class AuthController extends Controller{
     }
 
     public function login()
-    {
-        $credentials = request()->only(['email', 'password']);
+{
+    $credentials = request()->only(['email', 'password']);
 
-        validator($credentials, [
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ])->validate();
+    validator($credentials, [
+        'email' => ['required', 'email'],
+        'password' => ['required']
+    ])->validate();
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            return $user;
-        }
+    // Find the user by email
+    $user = User::where('email', $credentials['email'])->first();
 
-        $user = User::where('email', $credentials['email'])->first();
-
-        if (!$user) {
-            return response()->json(['errors' => ['Invalid email.']], 422);
-        }
-    
-        // Inform about password mismatch
-        return response()->json(['errors' => ['Incorrect password.']], 422);
+    if (!$user) {
+        return response()->json(['errors' => ['Invalid email.']], 422);
     }
+
+    // Check if the user is deactivated
+    if ($user->deactivate) {
+        return response()->json(['errors' => ['Your account is deactivated.']], 422);
+    }
+
+    // Attempt to authenticate the user
+    if (Auth::attempt($credentials)) {
+        // Authentication successful
+        $user = Auth::user();
+        return $user;
+    }
+
+    // Inform about password mismatch
+    return response()->json(['errors' => ['Incorrect password.']], 422);
+}
 
     public function logout()
     {
