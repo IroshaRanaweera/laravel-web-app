@@ -24,7 +24,7 @@
 
     function loadUsers(page = 1, sortBy = 'id', sortDir = 'asc') {
         $.ajax({
-            url: '/users',
+            url: '/user',
             type: 'GET',
             data: {
                 page: page,
@@ -48,7 +48,8 @@
                     row.append($('<td>').text(user.role));
 
                     // Create and append table data cells for Preview and Deactivate links
-                    var previewCell = $('<td>').html('<a href="/users/' + user.id + '/preview">Preview</a>');
+                    // var previewCell = $('<td>').html('<a href="/users/' + user.id + '/preview">Preview</a>');
+                    var previewCell = $('<td>').html('<a href="#" onclick="openUserInfoPage(' + user.id + ')">Preview</a>');
                     var deactivateCell = $('<td>').html('<a href="/users/' + user.id + '/deactivate">Deactivate</a>');
                     row.append(previewCell);
                     row.append(deactivateCell);
@@ -80,6 +81,11 @@
         });
     }
 
+    function openUserInfoPage(userId) {
+            window.location.href = '/user/'+userId;
+        }
+
+ 
     $(document).on('click', 'th[data-sort-by]', function() {
         var sortBy = $(this).data('sort-by');
         var sortDir = $(this).hasClass('sorted-asc') ? 'desc' : 'asc';
